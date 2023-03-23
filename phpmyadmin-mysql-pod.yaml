@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: phpmyadmin-mysql-pod
+spec:
+  containers:
+  - name: mysql
+    image: mysql:latest
+    env:
+    - name: MYSQL_ROOT_PASSWORD
+      value: test
+    ports:
+    - containerPort: 3306
+  - name: phpmyadmin
+    image: phpmyadmin/phpmyadmin:latest
+    ports:
+    - containerPort: 80
+    env:
+    - name: PMA_HOST
+      value: mysql
